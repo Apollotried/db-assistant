@@ -49,8 +49,13 @@ A full-stack application that converts natural language questions to SQL queries
 ### SQL Generation Interface
 
 <img width="1623" height="894" alt="f" src="https://github.com/user-attachments/assets/290bc7f5-e8e7-402b-bb77-70133aac1524" />
+<img width="1004" height="850" alt="g" src="https://github.com/user-attachments/assets/678cb855-ab08-4d8c-8264-44cea2662728" />
+<img width="1546" height="493" alt="h" src="https://github.com/user-attachments/assets/3bee4855-67e6-4e23-a632-8aaf7826dadb" />
+
+
 <img width="912" height="443" alt="i" src="https://github.com/user-attachments/assets/7002c9b4-ad8a-4125-b4f7-9c960bb0d0b0" />
 <img width="1493" height="386" alt="j" src="https://github.com/user-attachments/assets/7d891b93-c017-4705-b729-1c50e2cabb00" />
+
 
 ### Results & History
 
