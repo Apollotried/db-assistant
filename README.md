@@ -67,21 +67,6 @@ A full-stack application that converts natural language questions to SQL queries
 - Maven 3.6+
 - Docker + Docker Compose
 
-### Backend Setup
-```bash
-cd backend
-
-# Copy environment template
-cp src/main/resources/application.properties.template src/main/resources/application-local.properties
-
-# Set your environment variables
-export OPENAI_API_KEY=your_openai_api_key
-export JWT_SECRET_KEY=your_jwt_secret_key
-
-# Run the application
-./mvnw spring-boot:run
-
-
 
 # SQL Governance Rules for AI Assistant
 
@@ -218,3 +203,18 @@ export JWT_SECRET_KEY=your_jwt_secret_key
 
 6.  **PREFER** explicit column lists over ambiguous expressions.
     - Improves clarity and prevents schema drift issues.
+
+
+### Backend Setup
+```bash
+cd backend
+
+# Copy environment template
+cp src/main/resources/application.properties.template src/main/resources/application-local.properties
+
+# Set your environment variables
+export OPENAI_API_KEY=your_openai_api_key
+export JWT_SECRET_KEY=your_jwt_secret_key
+
+# Run the application
+./mvnw spring-boot:run
