@@ -65,6 +65,7 @@ A full-stack application that converts natural language questions to SQL queries
 - Node.js 18+
 - PostgreSQL 15+
 - Maven 3.6+
+- Docker + Docker Compose
 
 ### Backend Setup
 ```bash
