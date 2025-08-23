@@ -39,7 +39,28 @@ A full-stack application that converts natural language questions to SQL queries
 
 <img width="1021" height="635" alt="b" src="https://github.com/user-attachments/assets/6d4a3361-d4b0-4640-a350-b7ab94edcd27" />
 
+### Database Management
+
+<img width="1853" height="683" alt="c" src="https://github.com/user-attachments/assets/4da4a5fb-bb26-46e6-a402-ddc86109e4bf" />
+<img width="652" height="881" alt="d" src="https://github.com/user-attachments/assets/7fb59ded-77d1-4620-a771-4fd343e961a8" />
+<img width="1214" height="404" alt="e" src="https://github.com/user-attachments/assets/f153668e-0b1b-4f2e-8ffe-ffa4298da602" />
+
+
+### SQL Generation Interface
+
+<img width="1623" height="894" alt="f" src="https://github.com/user-attachments/assets/290bc7f5-e8e7-402b-bb77-70133aac1524" />
+<img width="912" height="443" alt="i" src="https://github.com/user-attachments/assets/7002c9b4-ad8a-4125-b4f7-9c960bb0d0b0" />
+<img width="1493" height="386" alt="j" src="https://github.com/user-attachments/assets/7d891b93-c017-4705-b729-1c50e2cabb00" />
+
+### Results & History
+
+<img width="1595" height="621" alt="k" src="https://github.com/user-attachments/assets/4b618602-f1b3-43a2-b748-5e7c7269ec91" />
+
+
+
+
 ## 🛡️ Safety Features
+
 
 - **RAG-Based Governance**: Retrieval Augmented Generation provides real-time safety rules
 - **Query Validation**: Prevents destructive operations (DROP TABLE, DELETE without WHERE)
