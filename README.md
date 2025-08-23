@@ -29,6 +29,16 @@ A full-stack application that converts natural language questions to SQL queries
 5. **Execute**: Approved queries run against the connected database
 6. **Save**: Successfully executed queries are saved for future reuse
 
+
+## 📸 Application Screenshots
+
+### Authentication Pages
+
+<img width="1163" height="542" alt="a" src="https://github.com/user-attachments/assets/4b7c94b9-4c5c-46ed-a5c5-0aeb44445282" />
+
+
+<img width="1021" height="635" alt="b" src="https://github.com/user-attachments/assets/6d4a3361-d4b0-4640-a350-b7ab94edcd27" />
+
 ## 🛡️ Safety Features
 
 - **RAG-Based Governance**: Retrieval Augmented Generation provides real-time safety rules
