@@ -24,7 +24,7 @@ A full-stack application that converts natural language questions to SQL queries
 1. **Connect**: User provides database connection details (host, port, username, password, DB type)
 2. **Ask**: User types natural language questions (e.g., "Show me the top 10 customers by total spending in 2024")
 3. **Generate**: Spring AI generates SQL queries based on database schema
-4. **Review**: User can approve, edit, or reject generated SQL before execution
+4. **Review**: User can approve, or reject generated SQL before execution
 5. **Execute**: Approved queries run against the connected database
 6. **Save**: Successfully executed queries are saved for future reuse
 
