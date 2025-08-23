@@ -18,6 +18,7 @@ A full-stack application that converts natural language questions to SQL queries
 - **RAG (Retrieval Augmented Generation)** for safety rules enforcement
 - **JWT Authentication** with Spring Security
 - **Automated Service Generation** from OpenAPI specs
+- Dockerized Infrastructure for databases and vector storage
 
 ## 📋 How It Works
 
