@@ -1,0 +1,83 @@
+<app-header></app-header>
+<div class="container py-4">
+  <!-- Header -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>
+      <i class="bi bi-clock-history me-2"></i>
+      Query Execution History
+    </h2>
+    <button class="btn btn-outline-secondary btn-sm" (click)="loadQueryHistory()" [disabled]="isLoading">
+      <i class="bi bi-arrow-repeat"></i> Refresh
+    </button>
+  </div>
+
+  <!-- Error Message -->
+  @if (error) {
+    <div class="alert alert-danger">
+      <i class="bi bi-exclamation-triangle me-2"></i>
+      {{ error }}
+    </div>
+  }
+
+  <!-- Loading State -->
+  @if (isLoading) {
+    <div class="text-center my-5">
+      <div class="spinner-border text-primary" role="status"></div>
+      <p class="text-muted mt-2">Loading query history...</p>
+    </div>
+  }
+
+  <!-- Empty State -->
+  @if (!isLoading && !error && queryHistory.length === 0) {
+    <div class="text-center my-5">
+      <i class="bi bi-inbox" style="font-size: 3rem; color: #6c757d;"></i>
+      <p class="text-muted mt-3">No query history found</p>
+      <p class="text-muted">Queries you execute will appear here</p>
+    </div>
+  }
+
+  <!-- Query History Table -->
+  @if (!isLoading && queryHistory.length > 0) {
+    <div class="card">
+      <div class="card-header">
+        <h5 class="mb-0">Recent Queries ({{ queryHistory.length }})</h5>
+      </div>
+      <div class="card-body p-0">
+        <div class="table-responsive">
+          <table class="table table-hover mb-0">
+            <thead class="table-light">
+            <tr>
+              <th>Time</th>
+              <th>Type</th>
+              <th>Query</th>
+            </tr>
+            </thead>
+            <tbody>
+              @for (item of queryHistory; track item.id) {
+
+                <tr>
+                  <!-- Timestamp -->
+                  <td style="width: 160px;">
+                    <small class="text-muted">{{ formatDate(item.queryTime) }}</small>
+                  </td>
+
+                  <!-- Query Type -->
+                  <td style="width: 100px;">
+                    <span class="badge" [ngClass]="getQueryTypeClass(item.queryType)">
+                      {{ item.queryType }}
+                    </span>
+                  </td>
+
+                  <!-- Query Content -->
+                  <td>
+                    <code class="sql-query">{{ item.query }}</code>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  }
+</div>

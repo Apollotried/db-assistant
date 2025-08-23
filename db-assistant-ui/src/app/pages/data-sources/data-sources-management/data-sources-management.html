@@ -1,0 +1,135 @@
+<app-header></app-header>
+
+<div class="container-fluid py-4">
+  <!-- Page header -->
+  <div class="d-flex align-items-center justify-content-between mb-3">
+    <div>
+      <h2 class="mb-0">Data Sources</h2>
+      <p class="text-muted">
+        Manage connections to your databases
+        @if (lastRefreshed()) {
+          • last refreshed {{ lastRefreshed() }}
+        }
+      </p>
+    </div>
+
+    <div class="btn-group">
+      <button class="btn btn-outline-secondary" type="button" (click)="loadConnections()" [disabled]="loading()">
+        @if (!loading()) {
+          Refresh
+        } @else {
+          <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+          <span class="ms-2">Refreshing…</span>
+        }
+      </button>
+
+      <button class="btn btn-primary" type="button" (click)="openAddModal()">
+        + Add New
+      </button>
+
+
+    </div>
+  </div>
+
+  <div class="row g-3">
+    <!-- Right: List placeholder (will become <app-data-source-list />) -->
+    <div class="col-lg-8">
+      <div class="card h-100 shadow-sm">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <strong>Your Data Sources</strong>
+          <span class="badge bg-light text-dark">
+            Active: {{ activeConnection()?.name ?? 'None' }} / {{ totalConnections() }} total
+          </span>
+
+        </div>
+        <div class="card-body">
+          <!-- TODO: replace with <app-data-source-list /> -->
+          <div class="table-responsive">
+            <table class="table align-middle">
+              <thead>
+              <tr>
+                <th>id</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Host</th>
+                <th>Status</th>
+                <th class="text-end">Actions</th>
+              </tr>
+              </thead>
+              <tbody>
+                @if (totalConnections() === 0) {
+                  <tr class="text-muted">
+                    <td colspan="5">
+                      No data sources yet. Click <strong>Add New</strong> to create one.
+                    </td>
+                  </tr>
+                } @else {
+                  @for (conn of connections(); track $index) {
+                    <!-- TODO: replace [] with connections signal -->
+                    <tr >
+                       <td>{{conn.id}}</td>
+                      <td>{{ conn.name }}</td>
+                      <td>{{ conn.dbType }}</td>
+                      <td>{{ conn.host }}</td>
+                      <td>
+                        @if (conn.id === activeConnection()?.id) {
+                          <span class="badge bg-success">Online</span>
+                        } @else {
+                          <span class="badge bg-secondary">Offline</span>
+                        }
+                      </td>
+                      <td class="text-end">
+
+                        <button
+                          class="btn btn-sm btn-outline-primary"
+                          (click)="onActivateConnection(conn)"
+                          [disabled]="activeConnection()?.id === conn.id"
+                        >
+                          Connect
+                        </button>
+
+                        <button
+                          class="btn btn-sm btn-outline-secondary"
+                          (click)="onOpenTestModal(conn)"
+                        >
+                          Test
+                        </button>
+                        @if (conn.id === activeConnection()?.id){
+                          <button class="btn btn-sm btn-outline-success" (click)="goToLLM()">Chat with LLM</button>
+                        }
+
+                        <button
+                          class="btn btn-sm btn-outline-danger"
+                          (click)="onDeleteConnection(conn)"
+                        >
+                          Delete
+                        </button>
+                      </td>
+
+                    </tr>
+                  }
+                }
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <app-add-connection-modal
+    #addModal
+    (add)="onAddNew($event)"
+    (test)="onTestConnection($event)">
+  </app-add-connection-modal>
+
+  <app-test-connection-modal
+  #testModal
+  (submitPassword)="onSubmitTestModal($event)"
+  >
+  </app-test-connection-modal>
+
+
+
+</div>

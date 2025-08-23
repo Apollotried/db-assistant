@@ -1,0 +1,51 @@
+<div class="modal fade" id="addConnectionModal" tabindex="-1" aria-labelledby="addConnectionModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addConnectionModalLabel">Add New Data Source</h5>
+        <button type="button" class="btn-close" (click)="close()" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="submit()">
+          <div class="mb-2">
+            <label class="form-label">Connection Name</label>
+            <input type="text" class="form-control" [(ngModel)]="connection.name" name="name" required />
+          </div>
+          <div class="mb-2">
+            <label class="form-label">Database Type</label>
+            <select class="form-select" [(ngModel)]="connection.dbType" name="dbType" required>
+              <option value="postgresql">PostgreSQL</option>
+              <option value="mysql">MySQL</option>
+              <option value="sqlserver">SQL Server</option>
+            </select>
+          </div>
+          <div class="mb-2">
+            <label class="form-label">Host</label>
+            <input type="text" class="form-control" [(ngModel)]="connection.host" name="host" required />
+          </div>
+          <div class="mb-2">
+            <label class="form-label">Port</label>
+            <input type="number" class="form-control" [(ngModel)]="connection.port" name="port" required />
+          </div>
+          <div class="mb-2">
+            <label class="form-label">Database</label>
+            <input type="text" class="form-control" [(ngModel)]="connection.database" name="database" required />
+          </div>
+          <div class="mb-2">
+            <label class="form-label">Username</label>
+            <input type="text" class="form-control" [(ngModel)]="connection.username" name="username" required />
+          </div>
+          <div class="mb-2">
+            <label class="form-label">Password</label>
+            <input type="password" class="form-control" [(ngModel)]="connection.password" name="password" required />
+          </div>
+
+          <div class="d-flex gap-2 mt-2">
+            <button type="submit" class="btn btn-primary flex-fill">Add Connection</button>
+            <button type="button" class="btn btn-outline-secondary flex-fill" (click)="testConnection()">Test Connection</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

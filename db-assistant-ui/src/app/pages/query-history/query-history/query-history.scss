@@ -1,0 +1,327 @@
+:host {
+  display: block;
+  background: #f8f9fa;
+  min-height: 100vh;
+}
+
+.container {
+  padding: 2rem;
+}
+
+// Header styling
+.d-flex.justify-content-between.align-items-center {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  margin-bottom: 1.5rem;
+  border: 1px solid #e9ecef;
+
+  h2 {
+    color: #2c3e50;
+    font-weight: 700;
+    margin-bottom: 0;
+    font-size: 1.8rem;
+  }
+
+  .btn {
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    padding: 0.5rem 1rem;
+
+    &.btn-outline-secondary {
+      border-color: #6c757d;
+      color: #6c757d;
+      background: transparent;
+
+      &:hover {
+        background: #6c757d;
+        color: white;
+        border-color: #6c757d;
+      }
+
+      &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+    }
+  }
+}
+
+// Alert styling
+.alert {
+  border-radius: 8px;
+  border: 1px solid;
+  padding: 1rem 1.25rem;
+
+  &.alert-danger {
+    background: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+  }
+}
+
+// Loading state
+.text-center {
+  .spinner-border {
+    width: 2rem;
+    height: 2rem;
+    border-width: 2px;
+    color: #007bff;
+  }
+
+  .text-muted {
+    color: #6c757d !important;
+  }
+}
+
+// Empty state
+.text-center.my-5 {
+  .bi-inbox {
+    color: #6c757d !important;
+  }
+
+  .text-muted {
+    color: #6c757d !important;
+    font-size: 1.1rem;
+  }
+}
+
+// Card styling
+.card {
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  background: white;
+  overflow: hidden;
+
+  .card-header {
+    background: #f8f9fa;
+    border-bottom: 1px solid #e9ecef;
+    padding: 1.25rem 1.5rem;
+    border-radius: 16px 16px 0 0 !important;
+
+    h5 {
+      color: #2c3e50;
+      font-weight: 700;
+      margin-bottom: 0;
+      font-size: 1.2rem;
+    }
+  }
+
+  .card-body {
+    padding: 0;
+  }
+}
+
+// Table styling
+.table {
+  margin-bottom: 0;
+  border-collapse: separate;
+  border-spacing: 0;
+
+  thead th {
+    background: #f8f9fa;
+    border-bottom: 2px solid #dee2e6;
+    padding: 1.25rem 1rem;
+    font-weight: 700;
+    color: #2c3e50;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+
+    &:first-child {
+      padding-left: 1.5rem;
+    }
+
+    &:last-child {
+      padding-right: 1.5rem;
+    }
+  }
+
+  tbody {
+    tr {
+      transition: all 0.3s ease;
+      position: relative;
+
+      &:hover {
+        background: #f8f9fa !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      }
+
+      td {
+        padding: 1.25rem 1rem;
+        vertical-align: middle;
+        border-color: #e9ecef;
+        color: #495057;
+        font-weight: 500;
+
+        &:first-child {
+          padding-left: 1.5rem;
+        }
+
+        &:last-child {
+          padding-right: 1.5rem;
+        }
+      }
+    }
+  }
+}
+
+// SQL query styling
+.sql-query {
+  background-color: #f8f9fa;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  font-family: 'Fira Code', 'Monaco', 'Menlo', monospace;
+  font-size: 0.875rem;
+  border: 1px solid #e9ecef;
+  word-break: break-all;
+  max-width: 400px;
+  display: block;
+  white-space: pre-wrap;
+  color: #2c3e50;
+  line-height: 1.4;
+}
+
+// Badge styling
+.badge {
+  font-size: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 20px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+
+  // Query type specific colors
+  &.bg-primary { background: #007bff !important; color: white; }
+  &.bg-success { background: #28a745 !important; color: white; }
+  &.bg-warning { background: #ffc107 !important; color: #212529; }
+  &.bg-danger { background: #dc3545 !important; color: white; }
+  &.bg-secondary { background: #6c757d !important; color: white; }
+}
+
+// Timestamp styling
+.text-muted {
+  color: #6c757d !important;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+// Hover effects
+.table-hover tbody tr:hover {
+  background-color: #f8f9fa !important;
+
+  .sql-query {
+    background-color: #e9ecef;
+    border-color: #dee2e6;
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .d-flex.justify-content-between.align-items-center {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+    padding: 1.25rem;
+  }
+
+  .table-responsive {
+    font-size: 0.85rem;
+    margin: 0 -1rem;
+
+    .table {
+      thead th {
+        padding: 1rem 0.75rem;
+        font-size: 0.75rem;
+      }
+
+      tbody td {
+        padding: 1rem 0.75rem;
+      }
+    }
+  }
+
+  .sql-query {
+    font-size: 0.75rem;
+    max-width: 200px;
+    padding: 0.375rem 0.5rem;
+  }
+
+  .badge {
+    font-size: 0.7rem;
+    padding: 0.375rem 0.5rem;
+  }
+
+  .card-header {
+    text-align: center;
+  }
+}
+
+@media (max-width: 576px) {
+  .table {
+    thead {
+      display: none;
+    }
+
+    tbody tr {
+      display: block;
+      margin-bottom: 1rem;
+      border: 1px solid #e9ecef;
+      border-radius: 8px;
+      padding: 1rem;
+
+      td {
+        display: block;
+        text-align: right;
+        padding: 0.5rem !important;
+        border: none;
+        position: relative;
+
+        &::before {
+          content: attr(data-label);
+          float: left;
+          font-weight: bold;
+          color: #2c3e50;
+          text-transform: uppercase;
+          font-size: 0.75rem;
+        }
+
+        &:first-child {
+          padding-top: 1rem !important;
+        }
+
+        &:last-child {
+          padding-bottom: 1rem !important;
+          border-bottom: none;
+        }
+      }
+    }
+  }
+
+  .sql-query {
+    max-width: 100%;
+  }
+}
+
+// Focus states for accessibility
+.btn:focus,
+.btn:active {
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
+}
+
+// Animation for smooth transitions
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}

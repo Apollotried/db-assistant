@@ -1,0 +1,81 @@
+@if (isOpen){
+  <!-- test-connection-modal.html -->
+  <div class="modal-overlay">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="modal-title">
+          <i class="fas fa-key"></i> Test Database Connection
+        </h3>
+        <button class="close-btn" (click)="close()" [disabled]="testing">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="connection-info">
+          <div class="connection-icon">
+            <i class="fas fa-database"></i>
+          </div>
+          <div>
+            <h4>{{ connectionName }}</h4>
+            <p class="text-muted">Please enter the password to test this connection</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="connectionPassword">Password</label>
+          <div class="input-group">
+            <input
+              type="password"
+              id="connectionPassword"
+              [(ngModel)]="password"
+              class="form-control"
+              placeholder="Enter database password"
+              (keyup.enter)="confirm()"
+              [disabled]="testing"
+            />
+            <div class="input-group-append">
+              <button
+                class="btn btn-outline-secondary"
+                type="button"
+                (click)="togglePasswordVisibility()"
+                [disabled]="testing"
+              >
+                <i class="fas" [class.fa-eye]="!showPassword" [class.fa-eye-slash]="showPassword"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button
+          class="btn btn-outline-secondary"
+          (click)="close()"
+          [disabled]="testing"
+        >
+          <i class="fas fa-times"></i> Cancel
+        </button>
+        <button
+          class="btn btn-primary"
+          (click)="confirm()"
+          [disabled]="!password || testing"
+        >
+          @if (!testing){
+            <span>
+              <i class="fas fa-plug"></i> Test Connection
+            </span>
+          }
+
+          @if (testing){
+            <span>
+              <i class="fas fa-spinner fa-spin"></i> Testing...
+            </span>
+          }
+
+        </button>
+      </div>
+    </div>
+  </div>
+
+}

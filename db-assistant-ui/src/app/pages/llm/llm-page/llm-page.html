@@ -1,0 +1,155 @@
+<app-header></app-header>
+
+<div class="container py-4">
+  <!-- Header -->
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>
+      <i class="bi bi-robot me-2"></i>
+      Database Assistant
+    </h2>
+    <div>
+      <button class="btn btn-outline-secondary btn-sm me-2" (click)="showSchema()">
+        <i class="bi bi-diagram-3"></i> View Schema
+      </button>
+      <button class="btn btn-outline-danger btn-sm" (click)="clearChat()">
+        <i class="bi bi-trash"></i> Clear
+      </button>
+    </div>
+  </div>
+
+  <!-- Data Source Info -->
+  <div class="alert alert-info py-2 mb-3">
+    <i class="bi bi-database me-2"></i>
+    Querying: <strong>{{ currentDataSource()?.name }}</strong>
+    ({{ currentDataSource()?.host }}:{{ currentDataSource()?.port }})
+  </div>
+
+  <!-- Chat Messages -->
+  <div class="card mb-3 shadow-sm" style="height: 60vh; overflow-y: auto;">
+    <div class="card-body d-flex flex-column gap-3">
+      <!-- Messages loop -->
+      @for (msg of messages(); track msg.id) {
+        <div class="message"
+             [class.user-message]="isUserMessage(msg)"
+             [class.ai-message]="!isUserMessage(msg)">
+
+          <div class="message-header">
+            <strong>{{ isUserMessage(msg) ? 'You' : 'Assistant' }}</strong>
+          </div>
+
+          <!-- USER messages -->
+          @if (isUserMessage(msg)) {
+            <div class="message-content">
+              {{ msg.content }}
+            </div>
+          }
+
+          <!-- LLM messages -->
+          @if (isLlmMessage(msg)) {
+            <div class="sql-code">
+              <code>{{ msg.content }}</code>
+            </div>
+
+            @if (msg.content && !msg.content.includes('CANNOT_ANSWER')) {
+              <div class="mt-2 d-flex gap-2">
+                <button class="btn btn-sm btn-success" (click)="executeSql(msg.content)">
+                  <i class="bi bi-play-fill"></i> Execute
+                </button>
+              </div>
+            }
+          }
+
+          <!-- QUERY result messages -->
+          @if (isQueryMessage(msg)) {
+            <div class="query-result">
+
+              <!-- Summary -->
+              @if (!msg.result?.aggregateQuery && msg.result?.message) {
+                <div class="alert alert-success py-2 mb-2">
+                  <i class="bi bi-check-circle me-2"></i>
+                  {{ msg.result.message }}
+                </div>
+              }
+
+              <!-- Table results -->
+              @if (hasTableData(msg.result)) {
+                <div class="table-responsive">
+                  <table class="table table-sm table-bordered">
+                    <thead class="table-light">
+                    <tr>
+                      @for (col of getTableColumns(msg.result); track col) {
+                        <th>{{ col }}</th>
+                      }
+                    </tr>
+                    </thead>
+                    <tbody>
+                      @for (row of getTableData(msg.result); track row) {
+                        <tr>
+                          @for (col of getTableColumns(msg.result); track col) {
+                            <td>{{ row[col] }}</td>
+                          }
+                        </tr>
+                      }
+                    </tbody>
+                  </table>
+                </div>
+              }
+
+              <!-- Aggregate results -->
+              @if (msg.result?.aggregateResult) {
+                <div class="alert alert-info py-2">
+                  <i class="bi bi-bar-chart"></i>
+                  {{ msg.result.aggregateResult?.['displayName'] }}:
+                  <strong>{{ msg.result.aggregateResult?.['value'] }}</strong>
+                </div>
+              }
+            </div>
+          }
+        </div>
+      }
+
+      <!-- Loading indicator -->
+      @if (isLoading()) {
+        <div class="text-center my-4">
+          <div class="spinner-border text-primary" role="status"></div>
+          <p class="text-muted mt-2">Generating SQL...</p>
+        </div>
+      }
+    </div>
+  </div>
+
+  <!-- Input Area -->
+  <form (ngSubmit)="sendMessage()">
+    <div class="input-group mb-2">
+      <textarea class="form-control"
+                [(ngModel)]="newMessage"
+                [disabled]="isLoading()"
+                name="newMessage"
+                placeholder="Ask about your data..."
+                rows="2"
+                (keydown)="handleEnter($event)"
+                required></textarea>
+      <button class="btn btn-primary" type="submit" [disabled]="isLoading()">
+        <i class="fas fa-paper-plane"></i>
+      </button>
+    </div>
+  </form>
+
+  <!-- Schema Modal -->
+  <div class="modal fade" tabindex="-1" [class.show]="isSchemaOpen" [ngStyle]="{ display: isSchemaOpen ? 'block' : 'none' }">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content shadow-lg">
+        <div class="modal-header">
+          <h5 class="modal-title"><i class="bi bi-diagram-3 me-2"></i> Database Schema</h5>
+          <button type="button" class="btn-close" (click)="closeSchema()"></button>
+        </div>
+        <div class="modal-body" style="max-height: 70vh; overflow-y: auto;">
+          <pre class="schema-text">{{ schema() }}</pre>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" (click)="closeSchema()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
