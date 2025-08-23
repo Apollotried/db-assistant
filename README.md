@@ -52,6 +52,12 @@ A full-stack application that converts natural language questions to SQL queries
 - **JWT Interceptors**: Authentication handling
 - **RxJS**: Reactive programming patterns
 
+### Infrastructure (Dockerized)
+- **PostgreSQL**: Application database
+- **PgVector**: Extension-enabled PostgreSQL instance for embeddings
+- **Docker Compose**: Orchestration of multiple containers
+- **Persistence**: Named volumes for database data
+
 ## 📦 Installation
 
 ### Prerequisites
